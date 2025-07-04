@@ -22,3 +22,24 @@ Flood-Streaming is a fully cloud-native, fault-tolerant streaming data pipeline 
 
 ## 🏗️ Architecture
 
+- **Producer**: Publishes JSON events (sensor ID, location, water level, timestamp)
+- **Kafka Broker**: Routes data to appropriate topic(s)
+- **Kafka Connect**: Reads from topic and streams events into S3
+- **Consumer**: Python app for real-time processing (alerting/validation)
+- **S3**: Data lake for storing raw or transformed events
+
+---
+
+## 🧰 Tech Stack
+
+| Tool               | Role                                                |
+|--------------------|-----------------------------------------------------|
+| **AWS EC2**         | Hosts Kafka, Kafka Connect, and Python services     |
+| **AWS S3**          | Stores streaming data files                         |
+| **AWS CloudFormation** | Provisions networking, EC2, IAM roles, etc.       |
+| **Apache Kafka**    | Messaging backbone                                  |
+| **Kafka Connect**   | Streams data into S3 (sink connector)               |
+| **Python**          | Custom producer and consumer apps                   |
+| **AWS EMR (optional)** | Post-stream batch analytics                       |
+
+---
